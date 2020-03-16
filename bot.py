@@ -43,7 +43,7 @@ def tweet_reply():
                     # Construct the reply that will go into the tweet
                     reply_status = '@%s %s' % (tweet.user.screen_name, reply_text)
                     # Tweet a reply to the user
-                    api.update_status(status=reply_status, in_reply_to_status=tweet.id)
+                    api.update_status(status=reply_status, in_reply_to_status_id=tweet.id)
 
         time.sleep(INTERVAL)                
 
