@@ -6,6 +6,18 @@ CONSUMER_SECRET = environ['CONSUMER_SECRET']
 ACCESS_KEY = environ['ACCESS_KEY']
 ACCESS_SECRET = environ['ACCESS_SECRET']
 
+def tweet_test():
+    interval = 60 * 60 # run the app every hour
+
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+
+    api = tweepy.API(auth)
+    
+    reply_text = 'You should join this group'
+
+    api.update_status(status=reply_text)
+
 def tweet_reply():
     interval = 60 * 60 # run the app every hour
 
@@ -38,4 +50,4 @@ def tweet_reply():
         time.sleep(INTERVAL)                
 
 if __name__ == '__main__':
-    tweet_reply()
+    tweet_test()
