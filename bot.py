@@ -7,14 +7,12 @@ ACCESS_KEY = environ['ACCESS_KEY']
 ACCESS_SECRET = environ['ACCESS_SECRET']
 
 def tweet_test():
-    interval = 60 * 60 # run the app every hour
-
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 
     api = tweepy.API(auth)
     
-    reply_text = 'You should join this group'
+    reply_text = 'We are a support group for workers affected by COVID19. Please follow us and join the FB group at https://www.facebook.com/groups/329192668038673/'
 
     api.update_status(status=reply_text)
 
@@ -28,7 +26,7 @@ def tweet_reply():
 
     hashtags = ['#COVID19walkout', '#COVID19WALKOUT', '#covid19walkout']
 
-    reply_text = 'You should join this group'
+    reply_text = 'We are a support group for workers affected by COVID19. Please follow us and join the FB group at https://www.facebook.com/groups/329192668038673/'
 
     tweet_history = []
 
@@ -36,7 +34,7 @@ def tweet_reply():
 
         for hashtag in hashtags: # cycle through the hashtags
 
-            for tweet in tweepy.Cursor(api.search, q=hashtag).items(): # cycle through the tweets found with the hashtag
+            for tweet in tweepy.Cursor(api.search, q=hashtag, count=100).items(): # cycle through the tweets found with the hashtag
                 # Ignore tweets already replied to. NB Can edit to ignore users already replied to
                 if ( tweet.id not in tweet_history ):
                     # Add this tweet to those already replied to
