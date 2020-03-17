@@ -14,7 +14,7 @@ def tweet_test():
 
     api = tweepy.API(auth)
     
-    reply_text = 'We are a support group for workers affected by COVID19. Please follow us and join the FB group at https://www.facebook.com/groups/329192668038673/'
+    reply_text = 'For support/advice as a worker affected by coronavirus, follow us and join the FB group at www.facebook.com/groups/329192668038673/'
 
     api.update_status(status=reply_text)
 
@@ -26,27 +26,24 @@ def tweet_reply():
 
     api = tweepy.API(auth)
 
-    hashtags = ['#COVID19walkout', '#COVID19WALKOUT', '#covid19walkout']
+    hashtag = '#covid19walkout'
 
     reply_text = 'For support/advice as a worker affected by coronavirus, follow us and join the FB group at www.facebook.com/groups/329192668038673/'
 
     tweet_history = []
 
     while True: # the main loop to run the app
-
-        for hashtag in hashtags: # cycle through the hashtags
-
-            for tweet in tweepy.Cursor(api.search, q=hashtag, count=100).items(): # cycle through the tweets found with the hashtag
-                # Ignore tweets already replied to, and only look at those in the last hour and in English
-                if ( tweet.id not in tweet_history ) and ( tweet.lang == 'en' ) and ( tweet.created_at > (datetime.now() - timedelta(hours = 1)) ):
-                    
-                    # Add this tweet to those already replied to
-                    tweet_history.append(tweet.id)
-                    
-                    # Construct the reply that will go into the tweet
-                    reply_status = '@%s %s' % (tweet.user.screen_name, reply_text)
-                    # Tweet a reply to the user
-                    api.update_status(status=reply_status, in_reply_to_status_id=tweet.id)
+        for tweet in tweepy.Cursor(api.search, q=hashtag, lang='en', count=100).items(): # cycle through the tweets found with the hashtag
+            # Ignore tweets already replied to, and only look at those in the last hour and in English
+            if ( tweet.user.id not in tweet_history ) and ( tweet.created_at > (datetime.now() - timedelta(hours = 1)) ):
+                
+                # Add this tweet to those already replied to
+                tweet_history.append(tweet.user.id)
+                
+                # Construct the reply that will go into the tweet
+                reply_status = '@%s %s' % (tweet.user.screen_name, reply_text)
+                # Tweet a reply to the user
+                api.update_status(status=reply_status, in_reply_to_status_id=tweet.id)
 
         time.sleep(interval)                
 
