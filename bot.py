@@ -32,18 +32,18 @@ def tweet_reply():
     tweet_history = []
 
     while True: # the main loop to run the app
-        for tweet in tweepy.Cursor(api.search, q=hashtag, lang='en', count=100).items(): # cycle through the tweets found with the hashtag
+        for tweet in tweepy.Cursor(api.search, q=hashtag, lang='en', geocode='54.259447,-4.191876,500km', count=20).items(): # cycle through the tweets found with the hashtag
             # Ignore tweets already replied to, and only look at those in the last hour and in English
-            if ( tweet.user.id not in tweet_history ) and ( tweet.created_at > (datetime.now() - timedelta(hours = 1)) ):
+            if ( tweet.user.id_str not in tweet_history ) and ( tweet.created_at > (datetime.now() - timedelta(hours = 1)) ):
                 
                 # Add this tweet to those already replied to
-                tweet_history.append(tweet.user.id)
+                tweet_history.append(tweet.user.id_str)
                 
                 # Construct the reply that will go into the tweet
                 reply_status = '@%s %s' % (tweet.user.screen_name, reply_text)
                 # Tweet a reply to the user
-                api.update_status(status=reply_status, in_reply_to_status_id=tweet.id)
-
+                api.update_status(status=reply_status, in_reply_to_status_id=tweet.id_str)
+            time.sleep(5)
         time.sleep(interval)                
 
 if __name__ == '__main__':
