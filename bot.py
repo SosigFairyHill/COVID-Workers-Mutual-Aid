@@ -1,7 +1,6 @@
 import tweepy, time, sys
 from os import environ
 from datetime import datetime, timedelta
-from email.utils import parsedate_tz
 
 CONSUMER_KEY = environ['CONSUMER_KEY']
 CONSUMER_SECRET = environ['CONSUMER_SECRET']
