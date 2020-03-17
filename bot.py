@@ -47,4 +47,4 @@ def tweet_reply():
         time.sleep(interval)                
 
 if __name__ == '__main__':
-    tweet_test()
+    tweet_reply()
