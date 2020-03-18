@@ -25,14 +25,15 @@ def tweet_reply():
 
     api = tweepy.API(auth)
 
-    hashtag = '#covid19walkout'
-
+    hashtags = ['%23covid19walkout', '%23covid19walkoutday1', '%23covid19walkoutday2', '%23covid19walkoutday3']
+    joiner = '+OR+
+    
     reply_text = 'For support/advice as a worker affected by coronavirus, follow us and join the FB group at www.facebook.com/groups/329192668038673/'
 
     tweet_history = []
 
     while True: # the main loop to run the app
-        for tweet in tweepy.Cursor(api.search, q=hashtag, lang='en', geocode='54.259447,-4.191876,500km', count=20).items(): # cycle through the tweets found with the hashtag
+        for tweet in tweepy.Cursor(api.search, q=joiner.join(hashtags), lang='en', geocode='54.259447,-4.191876,500km', count=20).items(): # cycle through the tweets found with the hashtag
             # Ignore tweets already replied to, and only look at those in the last hour and in English
             if ( tweet.user.id_str not in tweet_history ) and ( tweet.created_at > (datetime.now() - timedelta(hours = 1)) ):
                 
@@ -42,7 +43,7 @@ def tweet_reply():
                 # Construct the reply that will go into the tweet
                 reply_status = '@%s %s' % (tweet.user.screen_name, reply_text)
                 # Tweet a reply to the user
-                api.update_status(status=reply_status, in_reply_to_status_id=tweet.id_str)
+                api.update_status(status=reply_status, in_reply_to_status_id=tweet.id_str, auto_populate_reply_metadata=True)
             time.sleep(5)
         time.sleep(interval)                
 
