@@ -18,7 +18,7 @@ def tweet_test():
     api.update_status(status=reply_text)
 
 def tweet_reply():
-    interval = 60 * 60 # run the app every hour
+    interval = 60 * 25 # run the app every hour
 
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
@@ -35,7 +35,7 @@ def tweet_reply():
     while True: # the main loop to run the app
         for tweet in tweepy.Cursor(api.search, q=joiner.join(hashtags), lang='en', geocode='54.259447,-4.191876,500km', count=20).items(): # cycle through the tweets found with the hashtag
             # Ignore tweets already replied to, and only look at those in the last hour and in English
-            if ( tweet.user.id_str not in tweet_history ) and ( tweet.created_at > (datetime.now() - timedelta(hours = 1)) ):
+            if ( tweet.user.id_str not in tweet_history ) and ( tweet.created_at > (datetime.now() - timedelta(minutes = 25)) ):
                 
                 # Add this tweet to those already replied to
                 tweet_history.append(tweet.user.id_str)
