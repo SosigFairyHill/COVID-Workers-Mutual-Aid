@@ -21,3 +21,7 @@ The app runs once an hour - this allows it to be run using Heroku's free service
 The backend of Heroku is controlled based on the guide [here](https://medium.com/datadriveninvestor/making-a-quote-tweeting-twitter-bot-with-python-tweepy-and-heroku-69a11cd3f47e). Similar to the guide, the tweepy library is used to allow python to talk to the twitter API.
 
 The authorisation keys are held internally as environment variables in Heroku, and accessed securely from the script, so anyone running this for themselves would need to create their own twitter app to get the necessary access tokens.
+
+#### Limits
+
+Twitter has put stringent limits on what can be done with bots to stamp out spam bots. To avoid being a spam bot, I've put some limitations on the bot. Every 25 minutes (keeping this less than half an hour prevents the Heroku service from idling, which would crash the app), a search is run, returning up to 20 results. Only tweets from the last 25 minutes are included. After replying to each tweet, there is a time lag of 5 seconds. After all tweets in the search result have been processed, there is a time lag of 25 minutes, and then the whole process is repeated.
