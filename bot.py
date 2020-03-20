@@ -32,6 +32,9 @@ def tweet_reply():
 
     tweet_history = []
 
+    print ( 'Starting main loop' )
+    sys.stdout.flush()
+
     while True: # the main loop to run the app
         tweet_count = 0        
         for tweet in tweepy.Cursor(api.search, q=joiner.join(hashtags), lang='en', geocode='54.259447,-4.191876,500km', result_type = 'recent', count=100).items(): # cycle through the tweets found with the hashtag
@@ -48,13 +51,17 @@ def tweet_reply():
                     api.update_status(status=reply_status, in_reply_to_status_id=tweet.id_str, auto_populate_reply_metadata=True)
                 except tweepy.TweepError:
                     print ( 'Caught Tweepy error' )
+                    sys.stdout.flush()
                     continue
             tweet_count += 1
             time.sleep(5)
         print ( '%s Tweets in Search' % tweet_count )
+        sys.stdout.flush()
         print ( 'Sleeping' )
+        sys.stdout.flush()
         time.sleep(interval)
         print ( 'Waking Up' )
+        sys.stdout.flush()
 
 if __name__ == '__main__':
     tweet_reply()
