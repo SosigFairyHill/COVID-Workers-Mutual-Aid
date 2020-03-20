@@ -25,7 +25,7 @@ def tweet_reply():
 
     api = tweepy.API(auth)
 
-    hashtags = ['%23covid19walkout', '%23covid19walkoutday1', '%23covid19walkoutday2', '%23covid19walkoutday3']
+    hashtags = ['%23covid19walkout', '%23keyworkers', '%23universalbasicincome', '%23universalbasicincomenow']
     joiner = '+OR+'
     
     reply_text = 'For support/advice as a worker affected by coronavirus, follow us and join the FB group at www.facebook.com/groups/329192668038673/'
