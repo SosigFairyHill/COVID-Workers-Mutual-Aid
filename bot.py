@@ -58,7 +58,11 @@ def tweet_reply():
                     sys.stdout.flush()
                     continue
             tweet_count += 1
-            time.sleep(5)
+            if tweet_count == 20:
+                print ( 'Replied to 20 tweets' )
+                sys.stdout.flush()
+                break
+            time.sleep(10)
         print ( '%s Tweets in Search' % tweet_count )
         sys.stdout.flush()
         print ( 'Sleeping' )
