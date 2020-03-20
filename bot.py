@@ -34,7 +34,7 @@ def tweet_reply():
 
     while True: # the main loop to run the app
         search_results = tweepy.Cursor(api.search, q=joiner.join(hashtags), lang='en', geocode='54.259447,-4.191876,500km', result_type = 'recent', count=100).items()
-        print ( len(search_results) )
+        print ( search_results.count() )
         
         for tweet in search_results: # cycle through the tweets found with the hashtag
             # Ignore tweets already replied to, and only look at those in the last hour and in English
