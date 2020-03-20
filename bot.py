@@ -33,10 +33,8 @@ def tweet_reply():
     tweet_history = []
 
     while True: # the main loop to run the app
-        search_results = tweepy.Cursor(api.search, q=joiner.join(hashtags), lang='en', geocode='54.259447,-4.191876,500km', result_type = 'recent', count=100).items()
-        print ( search_results.count() )
-        
-        for tweet in search_results: # cycle through the tweets found with the hashtag
+        tweet_count = 0        
+        for tweet in tweepy.Cursor(api.search, q=joiner.join(hashtags), lang='en', geocode='54.259447,-4.191876,500km', result_type = 'recent', count=100).items(): # cycle through the tweets found with the hashtag
             # Ignore tweets already replied to, and only look at those in the last hour and in English
             if ( tweet.user.id_str not in tweet_history ) and ( tweet.created_at > (datetime.now() - timedelta(minutes = 25)) ):
                 
@@ -51,7 +49,9 @@ def tweet_reply():
                 except tweepy.TweepError:
                     print ( 'Caught Tweepy error' )
                     continue
+            tweet_count += 1
             time.sleep(5)
+        print ( '%s Tweets in Search' % tweet_count )
         print ( 'Sleeping' )
         time.sleep(interval)
         print ( 'Waking Up' )
