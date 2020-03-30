@@ -13,7 +13,7 @@ def tweet_test():
 
     api = tweepy.API(auth)
     
-    reply_text = 'For support/advice as a worker affected by coronavirus, follow us and join the FB group at www.facebook.com/groups/329192668038673/'
+    reply_text = 'For support/advice as a worker affected by coronavirus, follow us and like us on FB https://www.facebook.com/coronavirushandbookforworkers/'
 
     api.update_status(status=reply_text)
 
@@ -28,7 +28,7 @@ def tweet_reply():
     hashtags = ['%23covid19walkout', '%23keyworkers', '%23universalbasicincome', '%23universalbasicincomenow']
     joiner = '+OR+'
     
-    reply_text = 'For support/advice as a worker affected by coronavirus, follow us and join the FB group at www.facebook.com/groups/329192668038673/'
+    reply_text = 'For support/advice as a worker affected by coronavirus, follow us and like us on FB https://www.facebook.com/coronavirushandbookforworkers/'
 
     tweet_history = []
 
