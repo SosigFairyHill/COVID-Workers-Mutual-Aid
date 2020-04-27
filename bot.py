@@ -25,7 +25,7 @@ def tweet_reply():
 
     api = tweepy.API(auth)
 
-    hashtags = ['%23covid19walkout', '%23keyworkers', '%23universalbasicincome', '%23universalbasicincomenow']
+    hashtags = ['%23ppenow', '%23shutthesites', '%23payeveryworker']
     joiner = '+OR+'
     
     reply_text = 'For support/advice as a worker affected by coronavirus, follow us and like us on FB https://www.facebook.com/coronavirushandbookforworkers/'

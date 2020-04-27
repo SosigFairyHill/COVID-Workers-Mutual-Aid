@@ -1,0 +1,10 @@
+name: strikemap
+title:
+username:
+account: workforcemovement
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2136351
+bundleId: 3027841
+url: https://workforcemovement.shinyapps.io/strikemap/
+when: 1587142645.54927
