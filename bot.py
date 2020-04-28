@@ -13,7 +13,7 @@ def tweet_test():
 
     api = tweepy.API(auth)
     
-    reply_text = 'For support/advice as a worker affected by coronavirus, follow us and like us on FB https://www.facebook.com/coronavirushandbookforworkers/'
+    reply_text = 'Join the movement for workers impacted by coronavirus workforcemovement.org/act-now'
 
     api.update_status(status=reply_text)
 
