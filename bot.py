@@ -28,7 +28,7 @@ def tweet_reply():
     hashtags = ['%23ppenow', '%23shutthesites', '%23payeveryworker']
     joiner = '+OR+'
     
-    reply_text = 'For support/advice as a worker affected by coronavirus, follow us and like us on FB https://www.facebook.com/coronavirushandbookforworkers/'
+    reply_text = 'Join the movement for workers impacted by coronavirus workforcemovement.org/act-now'
 
     tweet_history = []
 
